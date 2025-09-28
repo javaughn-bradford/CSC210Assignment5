@@ -143,4 +143,15 @@ def hybrid_sort(lst, threshold=10):
     Students must replace this with their own recursive implementation."""
     
     # YOUR CODE HERE
+    
+    if len(lst) <= threshold: 
+        insertion_sort(lst)
+        return
+    mid = len(lst) // 2
+    left = lst[:mid]
+    right = lst[mid:]
+    
+    hybrid_sort(left, threshold)
+    hybrid_sort(right, threshold)
+    lst[:] = merge(left, right)
     pass
