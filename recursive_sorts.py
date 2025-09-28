@@ -54,6 +54,18 @@ def merge_sort(lst):
     Students must replace this with their own recursive implementation."""
     
     # YOUR CODE HERE
+    if len(lst) <= 1:
+        return
+    mid = len(lst) // 2
+    left = lst[:mid]
+    right = lst[mid:]
+    
+    merge_sort(left)
+    merge_sort(right)
+    lst[:] = merge(left, right)
+    
+    
+    
     pass
 
 
@@ -72,6 +84,23 @@ def quicksort_in_place(lst, start, end):
     Students must replace this with their own recursive implementation."""
     
     # YOUR CODE HERE
+    
+    if start >= end:
+        return
+    
+    pivot_index = randint(start, end)
+    lst[pivot_index], lst[end] = lst[end], lst[pivot_index]
+    pivot = lst[end]
+    
+    i = start 
+    for j in range(start, end):
+        if lst[j] < pivot:
+            lst[i], lst[j] = lst[j], lst[i]
+            i += 1
+    lst[i], lst[end] = lst[end], lst[i]
+    quicksort_in_place(lst, start, i - 1)
+    quicksort_in_place(lst, i + 1, end)
+    
     # Here are some steps to follow
     # 1. Think about the base case first
     # 2. Choose a random pivot
